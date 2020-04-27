@@ -32,5 +32,8 @@
     </node>
     <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
     <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+    <node name="quaternion_to_rpy" pkg="rotors_gazebo" type="quaternion_to_rpy" output="screen" >
+        <remap from="odometry" to="odometry_sensor1/odometry" />
+    </node>
   </group>
 </launch>

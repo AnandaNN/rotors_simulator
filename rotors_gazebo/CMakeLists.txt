@@ -68,6 +68,14 @@ add_executable(hovering_example src/hovering_example.cpp)
 target_link_libraries(hovering_example ${catkin_LIBRARIES})
 add_dependencies(hovering_example ${catkin_EXPORTED_TARGETS})
 
+add_executable(quaternion_to_rpy src/quaternion_to_rpy.cpp)
+target_link_libraries(quaternion_to_rpy ${catkin_LIBRARIES})
+add_dependencies(quaternion_to_rpy ${catkin_EXPORTED_TARGETS})
+
+add_executable(trajectory_from_matlab src/trajectory_from_matlab.cpp)
+target_link_libraries(trajectory_from_matlab ${catkin_LIBRARIES})
+add_dependencies(trajectory_from_matlab ${catkin_EXPORTED_TARGETS})
+
 foreach(dir launch models resource worlds)
    install(DIRECTORY ${dir}/
       DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
