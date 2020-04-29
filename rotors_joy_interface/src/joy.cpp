@@ -40,6 +40,8 @@ Joy::Joy() {
   pnh.param("axis_roll_", axes_.roll, 3); // 0
   pnh.param("axis_pitch_", axes_.pitch, 4); // 1
   pnh.param("axis_thrust_", axes_.thrust, 1); // 2
+  pnh.param("axis_yaw_rate_", axes_.yaw_rate_left, 2); // 2
+  pnh.param("axis_yaw_rate_", axes_.yaw_rate_right, 5); // 2
 
   pnh.param("axis_direction_roll", axes_.roll_direction, -1);
   pnh.param("axis_direction_pitch", axes_.pitch_direction, 1);
@@ -80,16 +82,27 @@ void Joy::JoyCallback(const sensor_msgs::JoyConstPtr& msg) {
   control_msg_.roll = msg->axes[axes_.roll] * max_.roll * axes_.roll_direction;
   control_msg_.pitch = msg->axes[axes_.pitch] * max_.pitch * axes_.pitch_direction;
 
-  if (msg->buttons[buttons_.yaw_left]) {
-    current_yaw_vel_ = max_.rate_yaw;
+  // if (msg->buttons[buttons_.yaw_left]) {
+  //   current_yaw_vel_ = max_.rate_yaw;
+  // }
+  // else if (msg->buttons[buttons_.yaw_right]) {
+  //   current_yaw_vel_ = -max_.rate_yaw;
+  // }
+  // else {
+  //   current_yaw_vel_ = 0;
+  // }
+  // control_msg_.yaw_rate = current_yaw_vel_;
+
+  if( msg->axes[axes_.yaw_rate_left] < 0.99 ) {
+    control_msg_.yaw_rate = (1 - msg->axes[axes_.yaw_rate_left])/2.0 * max_.rate_yaw;
   }
-  else if (msg->buttons[buttons_.yaw_right]) {
-    current_yaw_vel_ = -max_.rate_yaw;
+  else if( msg->axes[axes_.yaw_rate_right] < 0.99 ){
+    control_msg_.yaw_rate = -(1 - msg->axes[axes_.yaw_rate_right])/2.0 * max_.rate_yaw;
   }
-  else {
-    current_yaw_vel_ = 0;
+  else
+  {
+    control_msg_.yaw_rate = 0;
   }
-  control_msg_.yaw_rate = current_yaw_vel_;
 
   if (is_fixed_wing_) {
     double thrust = msg->axes[axes_.thrust] * axes_.thrust_direction;
@@ -97,6 +110,8 @@ void Joy::JoyCallback(const sensor_msgs::JoyConstPtr& msg) {
   }
   else {
     control_msg_.thrust.z = (msg->axes[axes_.thrust] + 1) * max_.thrust / 2.0 * axes_.thrust_direction;
+    // if( msg->axes[axes_.thrust] >0.01 ) control_msg_.thrust.z = msg->axes[axes_.thrust] * max_.thrust * axes_.thrust_direction;
+    // else control_msg_.thrust.z = 0;
   }
 
   ros::Time update_time = ros::Time::now();

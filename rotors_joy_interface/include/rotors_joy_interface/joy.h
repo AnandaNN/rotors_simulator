@@ -31,6 +31,8 @@ struct Axes {
   int roll;
   int pitch;
   int thrust;
+  int yaw_rate_left;
+  int yaw_rate_right;
   int roll_direction;
   int pitch_direction;
   int thrust_direction;
