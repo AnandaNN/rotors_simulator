@@ -1,0 +1,245 @@
+<?xml version="1.0" ?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <!-- Only one ROS interface plugin is required per world, as any other plugin can connect a Gazebo
+         topic to a ROS topic (or vise versa). -->
+    <plugin name="ros_interface_plugin" filename="librotors_gazebo_ros_interface_plugin.so"/>
+
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>47.3667</latitude_deg>
+      <longitude_deg>8.5500</longitude_deg>
+      <elevation>500.0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <physics type='ode'>
+      <ode>
+        <solver>
+          <type>quick</type>
+          <iters>1000</iters>
+          <sor>1.3</sor>
+        </solver>
+        <constraints>
+          <cfm>0</cfm>
+          <erp>0.2</erp>
+          <contact_max_correcting_vel>100</contact_max_correcting_vel>
+          <contact_surface_layer>0.001</contact_surface_layer>
+        </constraints>
+      </ode>
+      <max_step_size>0.01</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>100</real_time_update_rate>
+      <gravity>0 0 -9.8</gravity>
+    </physics>
+
+    <include>
+      <name>wall 1</name>
+      <uri>model://wall5</uri>
+      <pose>-1 1.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 2</name>
+      <uri>model://wall5</uri>
+      <pose>-1 7.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 3</name>
+      <uri>model://wall5</uri>
+      <pose>-1 5 1 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>wall 7</name>
+      <uri>model://wall5</uri>
+      <pose>10 1.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 8</name>
+      <uri>model://wall5</uri>
+      <pose>10 7.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 9</name>
+      <uri>model://wall5</uri>
+      <pose>10 5 1 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>wall 4</name>
+      <uri>model://wall5</uri>
+      <pose>1.5 -1 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 5</name>
+      <uri>model://wall5</uri>
+      <pose>7.5 -1 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 6</name>
+      <uri>model://wall5</uri>
+      <pose>5 -1 1 0 0 1.57079632679</pose>
+    </include>
+
+    <include>
+      <name>wall 10</name>
+      <uri>model://wall5</uri>
+      <pose>1.5 10 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 11</name>
+      <uri>model://wall5</uri>
+      <pose>7.5 10 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 12</name>
+      <uri>model://wall5</uri>
+      <pose>5 10 1 0 0 1.57079632679</pose>
+    </include>
+
+    <include>
+      <name>wall 13</name>
+      <uri>model://wall5</uri>
+      <pose>1.5 1 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 14</name>
+      <uri>model://wall3</uri>
+      <pose>4.5 1 1 0 0 1.57079632679</pose>
+    </include>
+
+    <include>
+      <name>wall 15</name>
+      <uri>model://wall3</uri>
+      <pose>8 2.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 16</name>
+      <uri>model://wall</uri>
+      <pose>6 4.5 1 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>wall 17</name>
+      <uri>model://wall</uri>
+      <pose>6 1.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 18</name>
+      <uri>model://wall</uri>
+      <pose>2 1.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 19</name>
+      <uri>model://wall</uri>
+      <pose> 0 2.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 20</name>
+      <uri>model://wall5</uri>
+      <pose>5.5 4 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 21</name>
+      <uri>model://wall</uri>
+      <pose>4 3.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 22</name>
+      <uri>model://wall</uri>
+      <pose>2.5 4 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 23</name>
+      <uri>model://wall</uri>
+      <pose>0.5 2 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 24</name>
+      <uri>model://wall</uri>
+      <pose>1.5 2 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 25</name>
+      <uri>model://wall</uri>
+      <pose>-0.5 3 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 26</name>
+      <uri>model://wall</uri>
+      <pose>2 4.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 27</name>
+      <uri>model://wall</uri>
+      <pose>1.5 5 1 0 0 1.57079632679</pose>
+    </include>
+    
+    <include>
+      <name>wall 28</name>
+      <uri>model://wall</uri>
+      <pose>0.5 7 1 0 0 1.57079632679</pose>
+    </include>
+    <include>
+      <name>wall 29</name>
+      <uri>model://wall</uri>
+      <pose>1 7.5 1 0 0 0</pose>
+    </include>
+    <include>
+      <name>wall 30</name>
+      <uri>model://wall3</uri>
+      <pose>8 6.5 1 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>wall 31</name>
+      <uri>model://wall</uri>
+      <pose>-0.5 7 1 0 0 1.57079632679</pose>
+    </include>
+
+    <include>
+      <name>wall 32</name>
+      <uri>model://wall</uri>
+      <pose>6 5.5 1 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>wall 33</name>
+      <uri>model://wall5</uri>
+      <pose> 5.5 8 1 0 0 1.57079632679</pose>
+    </include>
+
+    <include>
+      <name>wall 34</name>
+      <uri>model://wall</uri>
+      <pose>3.5 7 1 0 0 1.57079632679</pose>
+    </include>
+
+    <include>
+      <name>wall 35</name>
+      <uri>model://wall</uri>
+      <pose>3 7.5 1 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>wall 36</name>
+      <uri>model://wall</uri>
+      <pose>4 6.5 1 0 0 0</pose>
+    </include>
+
+    <include>
+      <name>wall 36</name>
+      <uri>model://wall</uri>
+      <pose>4 7.5 1 0 0 0</pose>
+    </include>
+
+    <plugin name="GazeboPlugin" filename="/home/ananda/ROS/GazeboPlugin/export/lib/libGazeboCoSimPlugin.so"><portNumber>14581</portNumber></plugin>
+
+  </world>
+</sdf>
